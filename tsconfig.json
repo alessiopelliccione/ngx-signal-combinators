@@ -6,11 +6,11 @@
     "declaration": true,
     "declarationMap": true,
     "outDir": "./dist",
-    "rootDir": "./src/lib",
+    "rootDir": "./lib",
     "stripInternal": true,
     "removeComments": false,
     "skipLibCheck": true,
     "strict": true
   },
-  "include": ["src/lib/**/*.ts"]
+  "include": ["lib/**/*.ts"]
 }
