@@ -12,28 +12,6 @@ The package is designed for Angular 20+ applications that leverage the standalon
 
 ## Usage
 
-```ts
-import { Component, signal } from '@angular/core';
-import { and, not, or, pr } from 'ngx-signal-combinators';
-
-@Component({
-  standalone: true,
-  selector: 'user-banner',
-  template: `
-    @if (isPrivileged()) {
-      <p>Welcome back, privileged user!</p>
-    }
-  `,
-})
-export class UserBannerComponent {
-  private readonly isSignedIn = signal(true);
-  private readonly isAdmin = signal(false);
-  private readonly isNotSuspended = not(signal(false));
-
-  readonly isPrivileged = and(this.isSignedIn, or(this.isAdmin, this.isNotSuspended));
-}
-```
-
 ### API surface
 
 | Function | Description |
@@ -45,37 +23,37 @@ export class UserBannerComponent {
 
 ### Template example
 
-See `src/app/app.component.ts` for a full example that wires the helpers into a standalone component and uses the `@if` control flow syntax introduced in Angular 17. An excerpt is shown below:
+See `src/app/app.component.ts` for a full example that wires the helpers into a standalone component and uses the `@if` control flow syntax introduced in Angular 17. Inside a template you can combine the exported signals like this (assuming the component exposes `isSignedIn`, `hasPremium`, `isSuspended`, `searchTerm`, and a predicate helper `isNonEmpty` as signals/functions):
 
-```ts
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  template: `
-    @if (canSeeAdminPanel()) {
-      <article class="admin-panel">Admin panel unlocked.</article>
-    } @else {
-      <article class="admin-panel--locked">Admin panel locked.</article>
-    }
+```html
+@if (and(isSignedIn, hasPremium)()) {
+  <article class="premium-banner">
+    Thanks for subscribing! Premium features unlocked.
+  </article>
+} @else {
+  <article class="premium-banner--locked">Activate premium to unlock more features.</article>
+}
 
-    @if (hasSearchTerm()) {
-      <section class="search-results">
-        Showing results for "{{ searchTerm() }}".
-      </section>
-    }
-  `,
-})
-export class AppComponent {
-  readonly isSignedIn = signal(false);
-  readonly isAdmin = signal(false);
-  readonly hasPremium = signal(false);
-  readonly isSuspended = signal(false);
-  readonly searchTerm = signal('');
+@if (not(isSuspended)()) {
+  <aside class="account-status">Account in good standing.</aside>
+} @else {
+  <aside class="account-status--warning">Account currently suspended.</aside>
+}
 
-  private readonly isNotSuspended = not(this.isSuspended);
-  readonly hasSearchTerm = pr(this.searchTerm, (term) => term.trim().length > 0);
+@if (or(isSignedIn, hasPremium)()) {
+  <section class="dashboard">Dashboard available.</section>
+} @else {
+  <section class="dashboard--locked">Sign in to access your dashboard.</section>
+}
 
-  readonly canSeeAdminPanel = and(this.isSignedIn, this.isAdmin, this.hasPremium, this.isNotSuspended);
+@if (pr(searchTerm, isNonEmpty)()) {
+  <section class="search-results">
+    Showing results for "{{ searchTerm() }}".
+  </section>
+} @else {
+  <section class="search-results--empty">
+    Enter a search term to see results.
+  </section>
 }
 ```
 
