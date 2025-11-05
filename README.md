@@ -23,7 +23,9 @@ The package is designed for Angular 20+ applications that leverage the standalon
 
 ### Template example
 
-See `src/app/app.component.ts` for a full example that wires the helpers into a standalone component and uses the `@if` control flow syntax introduced in Angular 17. Inside a template you can combine the exported signals like this (assuming the component exposes `isSignedIn`, `hasPremium`, `isSuspended`, `searchTerm`, and a predicate helper `isNonEmpty` as signals/functions):
+See `src/app/app.component.ts` for a full example that wires the helpers into a standalone component and uses the `@if` control flow syntax introduced in Angular 17. Below are individual template snippets that demonstrate each helper (assuming the component exposes `isSignedIn`, `hasPremium`, `isSuspended`, `searchTerm`, and a predicate helper `isNonEmpty` as signals/functions):
+
+#### `and(...)`
 
 ```html
 @if (and(isSignedIn, hasPremium)()) {
@@ -33,19 +35,31 @@ See `src/app/app.component.ts` for a full example that wires the helpers into a 
 } @else {
   <article class="premium-banner--locked">Activate premium to unlock more features.</article>
 }
+```
 
+#### `not(...)`
+
+```html
 @if (not(isSuspended)()) {
   <aside class="account-status">Account in good standing.</aside>
 } @else {
   <aside class="account-status--warning">Account currently suspended.</aside>
 }
+```
 
+#### `or(...)`
+
+```html
 @if (or(isSignedIn, hasPremium)()) {
   <section class="dashboard">Dashboard available.</section>
 } @else {
   <section class="dashboard--locked">Sign in to access your dashboard.</section>
 }
+```
 
+#### `pr(...)`
+
+```html
 @if (pr(searchTerm, isNonEmpty)()) {
   <section class="search-results">
     Showing results for "{{ searchTerm() }}".
