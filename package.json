@@ -1,0 +1,26 @@
+{
+  "name": "ngx-signal-combinators",
+  "version": "0.0.1",
+  "description": "Tree-shakable signal combinators for Angular 20+.",
+  "author": "Alessio Pelliccione",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "@angular/core": "^20.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
+  }
+}
