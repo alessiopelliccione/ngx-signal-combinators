@@ -23,7 +23,7 @@ The package is designed for Angular 20+ applications that leverage the standalon
 
 ### Template example
 
-See `src/app/app.component.ts` for a full example that wires the helpers into a standalone component and uses the `@if` control flow syntax introduced in Angular 17. Below are individual template snippets that demonstrate each helper (assuming the component exposes `isSignedIn`, `hasPremium`, `isSuspended`, `searchTerm`, and a predicate helper `isNonEmpty` as signals/functions):
+Below are individual template snippets that demonstrate each helper (assuming the component exposes `isSignedIn`, `hasPremium`, `isSuspended`, `searchTerm`, and a predicate helper `isNonEmpty` as signals/functions):
 
 #### `and(...)`
 
