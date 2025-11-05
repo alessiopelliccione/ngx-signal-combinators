@@ -9,13 +9,11 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
       "default": "./dist/index.js"
     }
   },
-  "files": [
-    "dist",
-    "README.md"
-  ],
+  "files": ["dist","README.md","LICENSE"],
   "sideEffects": false,
   "scripts": {
     "build": "tsc --project tsconfig.json",
