@@ -2,13 +2,13 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "ES2020",
-    "moduleResolution": "Bundler",
+    "moduleResolution": "Node",
     "declaration": true,
     "declarationMap": true,
-    "outDir": "dist/",
+    "outDir": "dist",
     "rootDir": "lib",
+    "lib": ["ES2022", "DOM"],
     "stripInternal": true,
-    "removeComments": false,
     "skipLibCheck": true,
     "strict": true
   },
