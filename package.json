@@ -14,12 +14,15 @@
   },
   "sideEffects": false,
   "scripts": {
-    "test": "vitest run"
+    "build": "tsc --project tsconfig.json",
+    "test": "vitest run",
+    "publish:public": "npm publish --access=public"
   },
   "peerDependencies": {
     "@angular/core": "^20.0.0"
   },
   "devDependencies": {
+    "@angular/core": "^20.0.0",
     "typescript": "^5.4.0",
     "vitest": "^1.6.0"
   }

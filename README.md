@@ -1,5 +1,7 @@
 # ngx-signal-combinators
 
+[![npm version](https://img.shields.io/npm/v/ngx-signal-combinators.svg)](https://www.npmjs.com/package/ngx-signal-combinators)
+
 Composable boolean helpers built on Angular 20+ signals. The library exports tree-shakable utilities that let you combine `Signal<boolean>` values just like boolean expressions, while maintaining full type safety and reactivity.
 
 ## Installation
